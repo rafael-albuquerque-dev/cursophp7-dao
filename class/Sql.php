@@ -14,20 +14,20 @@ class Sql extends PDO{
     }
     
     //METODO PRA RECEBER VARIOS PARAMETROS
-    private function setParams($statment, $parameters = array())
+    private function setParams($statement, $parameters = array())
     {
         
           foreach ($parameters as $key => $value)
           {
-            $this->setParam($key, $value);
+            $this->setParam($statement,$key, $value);
           }
         
     }
     
     //METODO PARA RECEBER SO UM PARAMETRO
-    private function setParam($statment, $key, $value)
+    private function setParam($statement, $key, $value)
     {
-        $statment->bindParam($key, $value);
+        $statement->bindParam($key, $value);
     }
     //METODO PRA consulta A CONEXÃO COM BD
     public function query($rawQuery, $params = array())
