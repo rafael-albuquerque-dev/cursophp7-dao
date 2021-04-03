@@ -15,12 +15,14 @@ require_once("config.php");
 //echo json_encode($search);
 
 //AUTENTICA USUARIO usando login e senha
+//$usuario = new Usuario();
+//$usuario->login("Rafaele","j3j3j3j3");
+//echo $usuario;
 
-$usuario = new Usuario();
-$usuario->login("Rafaele","j3j3j3j3");
-echo $usuario;
-
-
+//INSERINDO USUARIO NO BD
+$aluno = new Usuario("Jaime","333555");//chama o construct do usuario()
+$aluno->insert(); 
+echo $aluno;
 
 
 

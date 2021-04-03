@@ -44,14 +44,8 @@ class Usuario{
         ));
         
         if(count($results) > 0){
-
-            $row = $results[0];
             
-            $this->setIdusuario($row['idusuarios']);
-            $this->setDeslogin($row['deslogin']);
-            $this->setDessenha($row['dessenha']);
-            $this->setDtcadastro(new DateTime($row['dtcadastro']));
-
+            $this->setData($results[0]);
             
         }
         
@@ -98,19 +92,47 @@ class Usuario{
         ));
         
         if(count($results) > 0){
-
-            $row = $results[0];
             
-            $this->setIdusuario($row['idusuarios']);
-            $this->setDeslogin($row['deslogin']);
-            $this->setDessenha($row['dessenha']);
-            $this->setDtcadastro(new DateTime($row['dtcadastro']));
-
+            $this->setData($results[0]);
             
         }else{
             throw new Exception("Login ou senha inválidos.");
         }
     }
+    
+//METODO PARA RECEBER TODOS OS DADOS DO BANCO
+
+    public function setData($data){
+        
+        $this->setIdusuario($data['idusuarios']);
+        $this->setDeslogin($data['deslogin']);
+        $this->setDessenha($data['dessenha']);
+        $this->setDtcadastro(new DateTime($data['dtcadastro']));
+        
+    }
+//METODO PARA INSERIR USUARIO
+
+    public function insert(){
+        
+        $sql = new Sql();
+        $results = $sql->select("CALL sp_usuarios_insert(:LOGIN, :PASSWORD)",array(
+           ":LOGIN"=> $this->getDeslogin(),
+           ":PASSWORD" => $this->getDessenha() 
+        ));
+        
+        if(count($results) > 0){
+            $this->setData($results[0]);//chama todos os dados do banco
+        }
+        
+    }
+
+//METODO CONSTRUTOR PRA INSERIR USUARIO PELO METODO INSERT()
+
+    public function __construct($login = "", $password = ""){
+        $this->setDeslogin($login);
+        $this->setDessenha($password);
+    }
+    
     
     
 }
