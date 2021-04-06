@@ -133,6 +133,20 @@ class Usuario{
         $this->setDessenha($password);
     }
     
+//METODO PARA UPDATE DE USUARIO
+
+    public function update($login, $password){
+        
+        $this->setDeslogin($login);
+        $this->setDessenha($password);
+        
+        $sql = new Sql();
+        $sql->query("UPDATE tb_usuarios SET deslogin = :LOGIN, dessenha = :PASSWORD WHERE idusuarios = :ID ",array(
+            ':LOGIN'=>$this->getDeslogin(),
+            ':PASSWORD'=>$this->getDessenha(),
+            ':ID'=>$this->getIdusuario()
+        ));
+    }    
     
     
 }

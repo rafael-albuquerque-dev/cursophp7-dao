@@ -20,12 +20,16 @@ require_once("config.php");
 //echo $usuario;
 
 //INSERINDO USUARIO NO BD
-$aluno = new Usuario("Jaime","333555");//chama o construct do usuario()
-$aluno->insert(); 
-echo $aluno;
+//$aluno = new Usuario("Jaime","333555");//chama o construct do usuario()
+//$aluno->insert(); 
+//echo $aluno;
+ 
+//FAZENDO UPDATE
 
-
-
+$usuario = new Usuario();
+$usuario->loadById(12);
+$usuario->update("tiago", "555555");
+echo $usuario;
 
 
 //OUTRA FORMA DE APRESENTAR A LISTA DE USUARIOS
