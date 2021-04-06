@@ -25,11 +25,19 @@ require_once("config.php");
 //echo $aluno;
  
 //FAZENDO UPDATE
+//$usuario = new Usuario();
+//$usuario->loadById(12);
+//$usuario->update("tiago", "555555");
+//echo $usuario;
+
+//DELETAR USUARIO
 
 $usuario = new Usuario();
-$usuario->loadById(12);
-$usuario->update("tiago", "555555");
+$usuario->loadById(13);
+$usuario->delete();
 echo $usuario;
+
+
 
 
 //OUTRA FORMA DE APRESENTAR A LISTA DE USUARIOS
